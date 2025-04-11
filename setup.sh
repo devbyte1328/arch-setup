@@ -410,7 +410,7 @@ AUTOSTART_KONSOLE
   chmod +x /home/main/.config/autostart-scripts/set-konsole-colorscheme.sh
   chown main:main /home/main/.config/autostart-scripts/set-konsole-colorscheme.sh
 
-  pacman -Syu --noconfirm
+  pacman -Sy --noconfirm
 EOF
 
 # Unmount partitions and reboot
