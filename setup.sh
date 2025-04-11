@@ -177,7 +177,7 @@ arch-chroot /mnt /bin/bash <<EOF
     echo "Installing packages for STABLE branch..."
     pacman -S --needed --noconfirm git base-devel
     pacman -S --noconfirm grub efibootmgr os-prober mtools dosfstools linux-headers networkmanager nm-connection-editor pipewire pipewire-pulse pipewire-alsa pavucontrol dialog vim neovim htop
-    pacman -S --noconfirm https://archive.archlinux.org/packages/u/ufw/ufw-0.36-4-any.pkg.tar.zst
+    pacman -U --noconfirm https://archive.archlinux.org/packages/u/ufw/ufw-0.36-4-any.pkg.tar.zst
   else
     echo "Installing packages for MASTER branch..."
     pacman -S --needed --noconfirm git base-devel
