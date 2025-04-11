@@ -175,24 +175,9 @@ arch-chroot /mnt /bin/bash <<EOF
     pacman -S --noconfirm grub efibootmgr os-prober mtools dosfstools linux-headers networkmanager nm-connection-editor pipewire pipewire-pulse pipewire-alsa pavucontrol dialog ufw vim neovim htop
   elif [ "$BRANCH" = "stable" ]; then
     echo "Installing packages for STABLE branch..."
-    pacman -S --needed --noconfirm https://archive.archlinux.org/packages/g/git/git-2.49.0-1-x86_64.pkg.tar.zst
-    pacman -S --needed --noconfirm https://archive.archlinux.org/packages/b/base-devel/base-devel-1-2-any.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/g/git/git-2.49.0-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/b/base-devel/base-devel-1-2-any.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/g/grub/grub-2%3A2.12rc1-7-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/e/efibootmgr/efibootmgr-18-3-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/o/os-prober/os-prober-1.83-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/m/mtools/mtools-4.0.28-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/d/dosfstools/dosfstools-4.2-5-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/l/linux-headers/linux-headers-6.9.arch1-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/n/networkmanager/networkmanager-1.52.0-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/n/nm-connection-editor/nm-connection-editor-1.8.24-1-x86_64.pkg.tar.xz
-    pacman -S --noconfirm https://archive.archlinux.org/packages/p/pipewire/pipewire-1%3A1.4.1-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/p/pipewire-pulse/pipewire-pulse-1%3A1.4.1-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/p/pipewire-alsa/pipewire-alsa-1%3A1.4.1-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/p/pavucontrol/pavucontrol-1%3A6.1-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/d/dialog/dialog-1%3A1.3_20250116-1-x86_64.pkg.tar.zst
-    pacman -S --noconfirm https://archive.archlinux.org/packages/u/ufw/ufw-0.36.2-5-any.pkg.tar.zst
+    pacman -S --needed --noconfirm git base-devel
+    pacman -S --noconfirm grub efibootmgr os-prober mtools dosfstools linux-headers networkmanager nm-connection-editor pipewire pipewire-pulse pipewire-alsa pavucontrol dialog ufw vim neovim htop
+    pacman -S --noconfirm https://archive.archlinux.org/packages/u/ufw/ufw-0.36-4-any.pkg.tar.zst
   else
     echo "Installing packages for MASTER branch..."
     pacman -S --needed --noconfirm git base-devel
