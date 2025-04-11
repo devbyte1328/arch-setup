@@ -1,15 +1,18 @@
 #!/bin/bash
 
 # Hardcode the branch ("test" for test branch, "master" for master branch)
-BRANCH="test"
+BRANCH="stable"
 
 # Set base URL based on selected branch
 if [ "$BRANCH" = "test" ]; then
-  BASE_URL="https://raw.githubusercontent.com/devbyte1328/arch-setup/refs/heads/test"
-  echo "Using config files from test branch"
+    BASE_URL="https://raw.githubusercontent.com/devbyte1328/arch-setup/refs/heads/test"
+    echo "Using config files from test branch"
+elif [ "$BRANCH" = "stable" ]; then
+    BASE_URL="https://raw.githubusercontent.com/devbyte1328/arch-setup/refs/heads/stable"
+    echo "Using config files from stable branch"
 else
-  BASE_URL="https://raw.githubusercontent.com/devbyte1328/arch-setup/refs/heads/master"
-  echo "Using config files from master branch"
+    BASE_URL="https://raw.githubusercontent.com/devbyte1328/arch-setup/refs/heads/master"
+    echo "Using config files from master branch"
 fi
 
 # Verify root privileges
@@ -109,9 +112,16 @@ mount "$part2" /mnt
 mkdir -p /mnt/boot/EFI
 mount "$part1" /mnt/boot/EFI
 
+
 # Install base system with additional utilities
-echo "Server=https://archive.archlinux.org/repos/2025/04/10/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
-pacstrap /mnt base linux linux-firmware bc curl
+if [ "$BRANCH" = "test" ]; then
+  pacstrap /mnt base linux linux-firmware bc curl
+elif [ "$BRANCH" = "stable" ]; then
+  echo "Server=https://archive.archlinux.org/repos/2025/04/10/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+  pacstrap /mnt base linux linux-firmware bc curl
+else
+  pacstrap /mnt base linux linux-firmware bc curl
+fi
 
 # Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
