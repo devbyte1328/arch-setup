@@ -110,7 +110,7 @@ mkdir -p /mnt/boot/EFI
 mount "$part1" /mnt/boot/EFI
 
 # Install base system with additional utilities
-echo "Server=https://archive.archlinux.org/repos/2024/04/01/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+echo "Server=https://archive.archlinux.org/repos/2025/04/10/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 pacstrap /mnt base linux linux-firmware bc curl
 
 # Generate fstab file
