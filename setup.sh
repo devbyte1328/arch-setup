@@ -127,6 +127,8 @@ fi
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot into the new system and configure it
+curl -LO https://archive.archlinux.org/packages/u/ufw/ufw-0.36-4-any.pkg.tar.zst
+mv ufw-0.36-4-any.pkg.tar.zst /mnt/root/
 arch-chroot /mnt /bin/bash <<EOF
   # Detect and set timezone automatically
   TIMEZONE=\$(curl -s https://ipapi.co/timezone)
@@ -177,7 +179,7 @@ arch-chroot /mnt /bin/bash <<EOF
     echo "Installing packages for STABLE branch..."
     pacman -S --needed --noconfirm git base-devel
     pacman -S --noconfirm grub efibootmgr os-prober mtools dosfstools linux-headers networkmanager nm-connection-editor pipewire pipewire-pulse pipewire-alsa pavucontrol dialog vim neovim htop
-    pacman -U --noconfirm https://archive.archlinux.org/packages/u/ufw/ufw-0.36-4-any.pkg.tar.zst
+    pacman -U --noconfirm /root/ufw-0.36-4-any.pkg.tar.zst
   else
     echo "Installing packages for MASTER branch..."
     pacman -S --needed --noconfirm git base-devel
@@ -397,6 +399,8 @@ AUTOSTART_KONSOLE
 
   pacman -Sy --noconfirm
 EOF
+
+rm -f /mnt/root/ufw-0.36-4-any.pkg.tar.zst
 
 # Unmount partitions and reboot
 umount -R /mnt
