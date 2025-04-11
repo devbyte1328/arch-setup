@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Hardcode the branch ("test" for test branch, "master" for master branch)
-BRANCH="master"
+BRANCH="test"
 
 # Set base URL based on selected branch
 if [ "$BRANCH" = "test" ]; then
@@ -110,6 +110,7 @@ mkdir -p /mnt/boot/EFI
 mount "$part1" /mnt/boot/EFI
 
 # Install base system with additional utilities
+echo "Server=https://archive.archlinux.org/repos/2024/04/01/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 pacstrap /mnt base linux linux-firmware bc curl
 
 # Generate fstab file
